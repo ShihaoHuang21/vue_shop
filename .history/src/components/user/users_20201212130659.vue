@@ -176,27 +176,13 @@
       title="分配角色"
       :visible.sync="setRoleDialogVisible"
       width="50%"
-      @close="seRoleDialogClosed"
     >
-      <div>
-        <p>当前的用户：{{ userInfo.username }}</p>
-        <p>当前的用户：{{ userInfo.role_name }}</p>
-        <p>
-          分配新角色：
-          <el-select v-model="selectedRoleId" placeholder="请选择">
-            <el-option
-              v-for="item in rolesList"
-              :key="item.id"
-              :label="item.roleName"
-              :value="item.id"
-            >
-            </el-option>
-          </el-select>
-        </p>
-      </div>
+      <span>这是一段信息</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="setRoleDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
+        <el-button type="primary" @click="setRoleDialogVisible = false"
+          >确 定</el-button
+        >
       </span>
     </el-dialog>
     <!--添加用户权限对话框-->
@@ -293,13 +279,7 @@ export default {
         ]
       },
       //控制分配用户对话框的显示与隐藏
-      setRoleDialogVisible: false,
-      //需要被分配角色的用户信息
-      userInfo: {},
-      //所有角色数据列表
-      rolesList: [],
-      //已选中的角色id值
-      selectedRoleId: ''
+      setRoleDialogVisible: false
     }
   },
   created() {
@@ -426,38 +406,8 @@ export default {
       this.getUsersList()
     },
     //展示分配角色的对话框
-    async setRole(userInfo) {
-      this.userInfo = userInfo
-      //获取所有用户列表
-      const { data: res } = await this.$http.get('roles')
-      if (res.meta.status !== 200) {
-        return this.$message.error('获取用户列表失败!')
-      }
-      this.rolesList = res.data
+    setRole() {
       this.setRoleDialogVisible = true
-    },
-    //点击按钮，分配角色
-    async saveRoleInfo() {
-      if (!this.selectedRoleId) {
-        return this.$message.error('请选择需要分配的角色!')
-      }
-      const { data: res } = await this.$http.put(
-        `users/${this.userInfo.id}/role`,
-        {
-          rid: this.selectedRoleId
-        }
-      )
-      if (res.meta.status !== 200) {
-        return this.$message.error('分配角色失败!')
-      }
-      this.$message.success('分配角色成功!')
-      this.getUsersList()
-      this.setRoleDialogVisible = false
-    },
-    //监听分配角色对话框关闭事件
-    seRoleDialogClosed() {
-      this.selectedRoleId = ''
-      this.userInfo = {}
     }
   }
 }

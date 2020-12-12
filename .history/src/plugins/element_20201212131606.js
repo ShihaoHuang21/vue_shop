@@ -1,11 +1,10 @@
-import { Aside, Breadcrumb, BreadcrumbItem, Button, Card, Col, Container, Dialog, Form, FormItem, Header, Input, Main, Menu, MenuItem, MenuItemGroup, Message, MessageBox, option, Pagination, Row, Select, Submenu, Switch, Table, TableColumn, Tag, Tooltip, Tree } from 'element-ui'
+import { Aside, Breadcrumb, BreadcrumbItem, Button, Card, Col, Container, Dialog, Form, FormItem, Header, Input, Main, Menu, MenuItem, MenuItemGroup, Message, MessageBox, Pagination, Row, Select, Submenu, Switch, Table, TableColumn, Tag, Tooltip, Tree } from 'element-ui'
 import Vue from 'vue'
 //挂载信息组件
 Vue.prototype.$message=Message
 Vue.prototype.$confirm=MessageBox.confirm
 Vue.use(Dialog)
 Vue.use(Select)
-Vue.use(option)
 
 Vue.use(Tree)
 Vue.use(Tag)
