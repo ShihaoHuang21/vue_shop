@@ -1,6 +1,7 @@
 //导入axios
 import axios from 'axios'
 import Vue from 'vue'
+import TreeTable from 'vue-table-with-tree-grid'
 import App from './App.vue'
 // 导入全局样式表
 import './assets/css/global.css'
@@ -9,6 +10,7 @@ import './assets/font/iconfont.css'
 //导入element-ui
 import './plugins/element.js'
 import router from './router'
+Vue.component('tree-table', TreeTable)
 //请求根路径
 axios.defaults.baseURL='http://timemeetyou.com:8889/api/private/v1/'
 axios.interceptors.request.use(config=>{
